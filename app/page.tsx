@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Hero from "@/components/home/Hero";
+import CompanyValues from "@/components/home/CompanyValues";
 
 export default function Home() {
   const coffeeProducts = [
@@ -114,6 +115,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <CompanyValues />
 
       {/* Products Section */}
       <section

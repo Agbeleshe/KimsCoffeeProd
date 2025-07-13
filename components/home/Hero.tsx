@@ -44,7 +44,7 @@ const Hero = () => {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-amber-700 text-amber-700 hover:bg-amber-700 hover:text-white"
+                  className="border-amber-700 w-[100%] md:w-auto text-amber-700 hover:bg-amber-700 hover:text-white"
                 >
                   Learn More
                 </Button>

@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <NavBar />
-        <div className="max-w-[100vw] overflow-hidden">{children}</div>
+        <div className="max-w-[100vw] overflow-hidden relative">{children}</div>
         <Footer />
       </body>
     </html>

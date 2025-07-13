@@ -1,10 +1,8 @@
-"use client";
-
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function RefundPolicyPage() {
   return (
-    <section className="bg-amber-50 min-h-screen py-20 px-4 sm:px-6 lg:px-8">
+    <section className="bg-amber-50 min-h-screen py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <div className="mb-10 text-center">
           <h1 className="text-4xl font-bold text-amber-900 mb-2">
