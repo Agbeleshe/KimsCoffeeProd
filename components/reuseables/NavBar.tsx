@@ -5,6 +5,8 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { usePathname } from "next/navigation";
+import logo from "../../public/logo.png";
+import Image from "next/image";
 
 const links = [
   { href: "/", label: "Home" },
@@ -29,9 +31,15 @@ const NavBar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center space-x-2">
-            <Coffee className="w-8 h-8 text-amber-700" />
+            <Image
+              src={logo}
+              alt="logo"
+              className="h-10 w-10"
+              height={15}
+              width={15}
+            />
             <span className="text-2xl font-bold text-amber-900">
-              Kim Coffee
+              Kims Coffee
             </span>
           </div>
 

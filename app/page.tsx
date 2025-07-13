@@ -230,7 +230,7 @@ export default function Home() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-amber-700"
+                className="border-white hover:border-amber-900 hover:bg-amber-900 hover:text-white bg-white text-amber-700"
               >
                 Contact Us
               </Button>

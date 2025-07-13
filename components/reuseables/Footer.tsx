@@ -1,6 +1,8 @@
 import { Coffee, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import React from "react";
+import Logo from "../../public/logo.png";
+import Image from "next/image";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -39,10 +41,10 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
-          <div>
+          <div className="bg-amber-600 p-3 rounded-xl">
             <Link href="/" className="flex items-center space-x-2 mb-4">
-              <Coffee className="w-8 h-8 text-amber-400" />
-              <span className="text-2xl font-bold">Kim Coffee</span>
+              <Image src={Logo} alt="logo" width={100} height={100} />
+              <span className="text-2xl font-bold">Kims Coffee</span>
             </Link>
             <p className="text-amber-200 mb-4">
               Bringing you the finest Nigerian coffee experience, one cup at a
