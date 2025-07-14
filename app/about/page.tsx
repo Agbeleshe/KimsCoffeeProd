@@ -1,27 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import {
-  Coffee,
-  Award,
-  Users,
-  Truck,
-  Star,
-  MapPin,
-  Phone,
-  Mail,
-  Menu,
-  X,
-  Leaf,
-  Heart,
-  Globe,
-} from "lucide-react";
+import { Users, Leaf, Heart, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
+import Image from "next/image";
+import coffee from "../../public/coffee-three-in-one-pac.png";
+import dummyImg from "../../public/dummyImg.png";
+import CertificateHighlight from "@/components/reuseables/CertificateHighlight";
 
 export default function About() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -128,22 +117,22 @@ export default function About() {
                 The Kim Coffee Journey
               </h2>
               <p className="text-amber-800 leading-relaxed text-lg">
-                Kim Coffee was born from a simple yet powerful vision: to
-                showcase the exceptional quality of Nigerian coffee to the world
-                while supporting the hardworking farmers who make it all
-                possible.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Sapiente in pariatur placeat porro atque, autem, cumque error
+                optio totam sint, esse cum odio sunt modi inventore saepe quae
+                ipsum aspernatur?
               </p>
               <p className="text-amber-800 leading-relaxed">
-                Our founder, inspired by the rich coffee traditions of Nigeria,
-                embarked on a mission to create direct relationships with local
-                farmers, ensuring fair compensation and sustainable farming
-                practices that benefit entire communities.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga
+                molestias sunt a ea reiciendis maiores quam nesciunt, saepe
+                vero! Commodi nemo doloribus obcaecati dolorem facilis numquam
+                deserunt vitae aliquid nisi.
               </p>
               <p className="text-amber-800 leading-relaxed">
-                Today, Kim Coffee stands as a testament to what is possible when
-                passion meets purpose. Every cup tells a story of tradition,
-                innovation, and the unwavering commitment to excellence that
-                defines our brand.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
+                quidem aut dolores delectus optio omnis, vel, ratione maxime
+                reiciendis odio voluptatibus ab laboriosam fuga animi?
+                Temporibus, libero. Quas, quae libero.
               </p>
               <div className="flex items-center space-x-6 pt-4">
                 <div className="text-center">
@@ -161,8 +150,10 @@ export default function About() {
               </div>
             </div>
             <div className="relative">
-              <img
-                src="https://images.pexels.com/photos/4350057/pexels-photo-4350057.jpeg?auto=compress&cs=tinysrgb&w=600"
+              <Image
+                height={400}
+                width={400}
+                src={coffee}
                 alt="Coffee farming in Nigeria"
                 className="w-full h-96 object-cover rounded-2xl shadow-xl"
               />
@@ -207,6 +198,9 @@ export default function About() {
           </div>
         </div>
       </section>
+
+      {/* Certification */}
+      <CertificateHighlight />
 
       {/* Timeline Section */}
       <section className="py-20 bg-white">
@@ -274,24 +268,21 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                name: "Kimberly Adebayo",
+                name: "Mr Kim",
                 role: "Founder & CEO",
-                image:
-                  "https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=400",
+                image: dummyImg,
                 bio: "Passionate about coffee and community development, Kimberly founded Kim Coffee to showcase Nigerian coffee excellence.",
               },
               {
                 name: "Emeka Okafor",
                 role: "Head of Operations",
-                image:
-                  "https://images.pexels.com/photos/3760790/pexels-photo-3760790.jpeg?auto=compress&cs=tinysrgb&w=400",
+                image: dummyImg,
                 bio: "With 15 years in supply chain management, Emeka ensures our coffee reaches customers fresh and on time.",
               },
               {
                 name: "Fatima Hassan",
                 role: "Quality Control Manager",
-                image:
-                  "https://images.pexels.com/photos/3760067/pexels-photo-3760067.jpeg?auto=compress&cs=tinysrgb&w=400",
+                image: dummyImg,
                 bio: "A certified coffee taster with expertise in bean selection and roasting, ensuring every batch meets our high standards.",
               },
             ].map((member, index) => (
@@ -300,7 +291,9 @@ export default function About() {
                 className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-2 bg-white border-amber-200"
               >
                 <CardContent className="p-6 text-center">
-                  <img
+                  <Image
+                    height={100}
+                    width={100}
                     src={member.image}
                     alt={member.name}
                     className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
@@ -333,7 +326,7 @@ export default function About() {
             <Link href="/products">
               <Button
                 size="lg"
-                className="bg-white text-amber-700 hover:bg-amber-50"
+                className="bg-white text-amber-700 hover:bg-amber-50 min-w-[250px]"
               >
                 Explore Our Products
               </Button>
@@ -342,7 +335,7 @@ export default function About() {
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-amber-700"
+                className="border-white hover:border-amber-900 text-amber-700 hover:bg-amber-900 hover:text-white min-w-[250px]"
               >
                 Get In Touch
               </Button>

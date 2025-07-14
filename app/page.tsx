@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Hero from "@/components/home/Hero";
 import CompanyValues from "@/components/home/CompanyValues";
+import About from "@/components/home/About";
 
 export default function Home() {
   const coffeeProducts = [
@@ -61,61 +62,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50">
       <Hero />
-
-      {/* About Section */}
-      <section id="about" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-amber-900 mb-4">
-              About Kim Coffee
-            </h2>
-            <p className="text-lg text-amber-800 max-w-3xl mx-auto">
-              Founded in the heart of Nigeria, Kim Coffee is dedicated to
-              bringing you the finest coffee experience while supporting local
-              communities and sustainable farming practices.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <h3 className="text-2xl font-semibold text-amber-900">
-                Our Story
-              </h3>
-              <p className="text-amber-800 leading-relaxed">
-                Kim Coffee was born from a passion for exceptional coffee and a
-                commitment to showcasing Nigeria rich coffee heritage. We work
-                directly with local farmers, ensuring fair trade practices and
-                the highest quality beans.
-              </p>
-              <p className="text-amber-800 leading-relaxed">
-                Every cup tells a story of tradition, quality, and the
-                dedication of Nigerian coffee farmers who have perfected their
-                craft over generations.
-              </p>
-              <div className="flex items-center space-x-4 text-amber-700">
-                <div className="flex items-center">
-                  <Star className="w-5 h-5 fill-current" />
-                  <span className="ml-1 font-semibold">4.9/5 Rating</span>
-                </div>
-                <div className="flex items-center">
-                  <Users className="w-5 h-5" />
-                  <span className="ml-1 font-semibold">
-                    10,000+ Happy Customers
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div className="relative">
-              <img
-                src="https://images.pexels.com/photos/4350057/pexels-photo-4350057.jpeg?auto=compress&cs=tinysrgb&w=600"
-                alt="Coffee farming in Nigeria"
-                className="w-full h-80 object-cover rounded-2xl shadow-xl"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
+      <About />
       <CompanyValues />
 
       {/* Products Section */}
@@ -193,7 +140,7 @@ export default function Home() {
                 className="text-center group hover:scale-105 transition-transform duration-300"
               >
                 <div className="flex justify-center mb-4">
-                  <div className="w-16 h-16 bg-amber-100 rounded-full flex items-center justify-center group-hover:bg-amber-200 transition-colors">
+                  <div className="w-16 h-16 bg-amber-100 cursor-pointer rounded-full flex items-center justify-center group-hover:bg-amber-200 transition-colors">
                     {feature.icon}
                   </div>
                 </div>
