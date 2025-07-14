@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import Link from "next/link";
 
 export default function Contact() {
   const [isVisible, setIsVisible] = useState(false);
@@ -52,8 +51,8 @@ export default function Contact() {
       icon: <MapPin className="w-6 h-6 text-amber-600" />,
       title: "Visit Our Store",
       details: [
-        "123 Coffee Street, Victoria Island",
-        "Lagos, Nigeria 101241",
+        "123 Coffee Street, Du",
+        "Plateau, Nigeria 101241",
         "Open Mon-Sat: 7AM - 8PM",
       ],
     },
@@ -61,7 +60,7 @@ export default function Contact() {
       icon: <Phone className="w-6 h-6 text-amber-600" />,
       title: "Call Us",
       details: [
-        "+234 800 123 4567",
+        "+234 806 956 9863",
         "+234 901 234 5678",
         "Available 24/7 for orders",
       ],
@@ -70,7 +69,7 @@ export default function Contact() {
       icon: <Mail className="w-6 h-6 text-amber-600" />,
       title: "Email Us",
       details: [
-        "hello@kimcoffee.ng",
+        "kimscoffee24@gmail.com",
         "orders@kimcoffee.ng",
         "support@kimcoffee.ng",
       ],
@@ -95,7 +94,7 @@ export default function Contact() {
     {
       question: "Do you offer nationwide delivery?",
       answer:
-        "Yes! We deliver nationwide across Nigeria. Orders within Lagos are typically delivered within 24 hours, while other states receive their orders within 2-3 business days.",
+        "Yes! We deliver nationwide across Nigeria. Orders within Plateau, Nigeria are typically delivered within 24 hours, while other states receive their orders within 2-3 business days.",
     },
     {
       question: "Can I visit your roastery?",
@@ -313,9 +312,11 @@ export default function Contact() {
                           Interactive Map
                         </p>
                         <p className="text-amber-700 text-sm">
-                          123 Coffee Street, Victoria Island
+                          123 Coffee Street, Du
                         </p>
-                        <p className="text-amber-700 text-sm">Lagos, Nigeria</p>
+                        <p className="text-amber-700 text-sm">
+                          Plateau, Nigeria
+                        </p>
                       </div>
                     </div>
                     <div className="p-6">
@@ -324,11 +325,11 @@ export default function Contact() {
                       </h3>
                       <div className="space-y-2 text-amber-800">
                         <p>
-                          <strong>Address:</strong> 123 Coffee Street, Victoria
-                          Island, Lagos
+                          <strong>Address:</strong> 123 Coffee Street, Du,
+                          Plateau, Nigeria
                         </p>
                         <p>
-                          <strong>Phone:</strong> +234 800 123 4567
+                          <strong>Phone:</strong> +234 806 956 9863
                         </p>
                         <p>
                           <strong>Email:</strong> store@kimcoffee.ng
@@ -401,7 +402,7 @@ export default function Contact() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-amber-700 to-amber-800">
+      {/* <section className="py-20 bg-gradient-to-r from-amber-700 to-amber-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
             Ready to Experience Kim Coffee?
@@ -424,11 +425,11 @@ export default function Contact() {
               variant="outline"
               className="border-white text-white hover:bg-white hover:text-amber-700"
             >
-              Call +234 800 123 4567
+              Call +234 806 956 9863
             </Button>
           </div>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

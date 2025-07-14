@@ -7,18 +7,12 @@ import {
   Users,
   Truck,
   Star,
-  MapPin,
-  Phone,
-  Mail,
-  Menu,
-  X,
   ShoppingCart,
   Filter,
   Search,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import Link from "next/link";
 
 export default function Products() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

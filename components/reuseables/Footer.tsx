@@ -21,15 +21,15 @@ const policyLinks = [
 const contactInfo = [
   {
     icon: <MapPin className="w-5 h-5 text-amber-400" />,
-    text: "Lagos, Nigeria",
+    text: "Plateau, Nigeria",
   },
   {
     icon: <Phone className="w-5 h-5 text-amber-400" />,
-    text: "+234 800 123 4567",
+    text: "+234 806 956 9863",
   },
   {
     icon: <Mail className="w-5 h-5 text-amber-400" />,
-    text: "hello@kimcoffee.ng",
+    text: "kimscoffee24@gmail.com",
   },
 ];
 

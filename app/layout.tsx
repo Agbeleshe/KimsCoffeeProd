@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description:
     "Discover the rich heritage of Nigerian coffee with Kim Coffee. Premium coffee beans from local farms, expertly roasted for the perfect flavor. Order online today!",
   keywords:
-    "Nigerian coffee, premium coffee, coffee beans, Kim Coffee, Lagos coffee, African coffee, coffee delivery Nigeria",
+    "Nigerian coffee, premium coffee, coffee beans, Kim Coffee, Plateau, Nigeria coffee, African coffee, coffee delivery Nigeria",
   openGraph: {
     title: "Kim Coffee - Premium Nigerian Coffee",
     description:
