@@ -5,8 +5,9 @@ import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { ChevronRight, ShoppingCart } from "lucide-react";
 import Link from "next/link";
-import coffeeSeed from "../../public/coffee-seed.png";
+import coffeeSeed from "../../public/captures/KimsCoffeeFive.jpg";
 import Image from "next/image";
+import logo from "../../public/logo.png";
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -16,15 +17,23 @@ const Hero = () => {
   }, []);
   return (
     <section id="home" className="relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div
-            className={`space-y-8 transition-all duration-1000 ${
+            className={`space-y-8 transition-all duration-1000 relative ${
               isVisible
                 ? "opacity-100 translate-x-0"
                 : "opacity-0 -translate-x-10"
             }`}
           >
+            <Image
+              alt="absolute logo"
+              src={logo}
+              height={200}
+              width={200}
+              className="absolute opacity-50 right-[-20%] top-10 animate-bounce [animation-duration:10s]"
+            />
+
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-amber-900 leading-tight">
               Taste the Rich
               <span className="text-amber-700"> Heritage</span> of
