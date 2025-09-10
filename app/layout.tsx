@@ -12,6 +12,10 @@ export const metadata: Metadata = {
     "Discover the rich heritage of Nigerian coffee with Kim Coffee. Premium coffee beans from local farms, expertly roasted for the perfect flavor. Order online today!",
   keywords:
     "Nigerian coffee, premium coffee, coffee beans, Kim Coffee, Plateau, Nigeria coffee, African coffee, coffee delivery Nigeria",
+
+  icons: {
+    icon: "/logo.png", // or "/logo.png"
+  },
   openGraph: {
     title: "Kim Coffee - Premium Nigerian Coffee",
     description:
