@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import coffeePac from "../../public/captures/KimsCoffeeTwelev.jpg";
@@ -18,6 +18,15 @@ const CardDeck = () => {
     setIndex((prev) => (prev + 1) % images.length);
   };
 
+  // Auto-advance every 3 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      handleNext();
+    }, 3000);
+
+    return () => clearInterval(interval); // cleanup on unmount
+  }, []);
+
   return (
     <div className="relative w-[300px] h-[350px] mx-auto overflow-visible">
       <AnimatePresence>
@@ -34,7 +43,7 @@ const CardDeck = () => {
                 drag="x"
                 dragConstraints={{ left: 0, right: 0 }}
                 dragElastic={0.8}
-                onDragEnd={(e: any, info: { offset: { x: number } }) => {
+                onDragEnd={(e, info) => {
                   if (info.offset.x > 100) handleNext();
                   if (info.offset.x < -100) handleNext();
                 }}
