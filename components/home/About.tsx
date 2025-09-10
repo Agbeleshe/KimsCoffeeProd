@@ -2,6 +2,7 @@ import { Star, Users } from "lucide-react";
 import React from "react";
 import coffeePac from "../../public/coffee-pac-no-bg.png";
 import Image from "next/image";
+import CardDeck from "../cool/CardDeck";
 
 const About = () => {
   return (
@@ -15,7 +16,7 @@ const About = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
+            <div className="space-y-6 max-w-md mx-auto">
               <h3 className="text-2xl text-center md:text-left font-semibold text-amber-900">
                 Our Story
               </h3>
@@ -44,13 +45,7 @@ const About = () => {
               </div>
             </div>
             <div className="relative overflow-visible">
-              <Image
-                height={200}
-                width={200}
-                src={coffeePac}
-                alt="Coffee farming in Nigeria"
-                className="w-[300px] h-[350px] object-cover mx-auto cursor-pointer"
-              />
+              <CardDeck />
             </div>
           </div>
         </div>
