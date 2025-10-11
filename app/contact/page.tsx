@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { MapPin, Phone, Mail, Clock, Send, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { HeaderSection } from "@/components/reuseables/HeaderSection";
 
 export default function Contact() {
   const [isVisible, setIsVisible] = useState(false);
@@ -115,30 +116,12 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 to-orange-50">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden py-20 lg:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className={`text-center transition-all duration-1000 ${
-              isVisible
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-amber-900 leading-tight mb-6">
-              Get in
-              <span className="text-amber-700"> Touch</span>
-              <br />
-              with Kim Coffee
-            </h1>
-            <p className="text-lg text-amber-800 max-w-3xl mx-auto mb-8">
-              Have questions about our coffee? Need help with an order? Want to
+      <HeaderSection
+        title="Get in touch wih us"
+        subtitle="  Have questions about our coffee? Need help with an order? Want to
               partner with us? We would love to hear from you and help you
-              discover the perfect coffee experience.
-            </p>
-          </div>
-        </div>
-      </section>
+              discover the perfect coffee experience."
+      />
 
       {/* Contact Info Cards */}
       <section className="py-20 bg-white">
@@ -400,36 +383,6 @@ export default function Contact() {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      {/* <section className="py-20 bg-gradient-to-r from-amber-700 to-amber-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Ready to Experience Kim Coffee?
-          </h2>
-          <p className="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
-            Do not wait! Order your favorite Kim Coffee products today and taste
-            the difference quality makes.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/products">
-              <Button
-                size="lg"
-                className="bg-white text-amber-700 hover:bg-amber-50"
-              >
-                Shop Now
-              </Button>
-            </Link>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-white hover:bg-white hover:text-amber-700"
-            >
-              Call +234 806 956 9863
-            </Button>
-          </div>
-        </div>
-      </section> */}
     </div>
   );
 }
