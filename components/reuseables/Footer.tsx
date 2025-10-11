@@ -1,4 +1,14 @@
-import { Coffee, Mail, MapPin, Phone } from "lucide-react";
+"use client";
+
+import {
+  Coffee,
+  Mail,
+  MapPin,
+  Phone,
+  Facebook,
+  Twitter,
+  Instagram,
+} from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import Logo from "../../public/logo.png";
@@ -14,7 +24,6 @@ const quickLinks = [
 const policyLinks = [
   { label: "Privacy Policy", href: "/privacy-policy" },
   { label: "Refund Policy", href: "/refund" },
-  { label: "Cookies Policy", href: "/cookies-policy" },
   { label: "Terms of Service", href: "/terms-of-service" },
 ];
 
@@ -33,7 +42,20 @@ const contactInfo = [
   },
 ];
 
-const socialIcons = ["f", "t", "i"];
+const socialLinks = [
+  {
+    icon: <Facebook className="w-4 h-4 text-amber-100" />,
+    href: "https://web.facebook.com/kimscoffeesNG/?_rdc=1&_rdr#",
+  },
+  // {
+  //   icon: <Twitter className="w-4 h-4 text-amber-100" />,
+  //   href: "#",
+  // },
+  {
+    icon: <Instagram className="w-4 h-4 text-amber-100" />,
+    href: "https://www.instagram.com/kimscoffees/?hl=en",
+  },
+];
 
 const Footer = () => {
   return (
@@ -41,7 +63,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
-          <div className="bg-amber-600 p-3 rounded-xl">
+          <div className="bg-amber-600 p-4 rounded-xl">
             <Link href="/" className="flex items-center space-x-2 mb-4">
               <Image src={Logo} alt="logo" width={100} height={100} />
               <span className="text-2xl font-bold">Kims Coffee</span>
@@ -50,14 +72,16 @@ const Footer = () => {
               Bringing you the finest Nigerian coffee experience, one cup at a
               time.
             </p>
+
             <div className="flex space-x-4">
-              {socialIcons.map((icon, index) => (
-                <div
+              {socialLinks.map(({ icon, href }, index) => (
+                <Link
                   key={index}
-                  className="w-8 h-8 bg-amber-700 rounded-full flex items-center justify-center hover:bg-amber-600 transition-colors cursor-pointer"
+                  href={href}
+                  className="w-8 h-8 bg-amber-700 rounded-full flex items-center justify-center hover:bg-amber-500 transition-colors"
                 >
-                  <span className="text-sm font-bold">{icon}</span>
-                </div>
+                  {icon}
+                </Link>
               ))}
             </div>
           </div>
@@ -112,7 +136,7 @@ const Footer = () => {
 
         <div className="border-t border-amber-800 mt-12 pt-8 text-center">
           <p className="text-amber-200">
-            &copy; 2025 Kim Coffee. All rights reserved. Made with ❤️.
+            &copy; {new Date().getFullYear()} Kim Coffee. All rights reserved.
           </p>
         </div>
       </div>
