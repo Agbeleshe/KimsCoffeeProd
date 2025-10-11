@@ -2,11 +2,11 @@
 
 import { Coffee, Award, Users, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import Hero from "@/components/home/Hero";
 import CompanyValues from "@/components/home/CompanyValues";
 import About from "@/components/home/About";
+import ProductSection from "@/components/home/ProductSection"; // ✅ new import
 
 export default function Home() {
   const coffeeProducts = [
@@ -63,127 +63,11 @@ export default function Home() {
       <Hero />
       <About />
       <CompanyValues />
-
-      {/* Products Section */}
-      <section
-        id="products"
-        className="py-20 bg-gradient-to-br from-amber-50 to-orange-50"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-amber-900 mb-4">
-              Our Premium Coffee Selection
-            </h2>
-            <p className="text-lg text-amber-800 max-w-3xl mx-auto">
-              Discover our carefully curated selection of premium Nigerian
-              coffee beans, each with its unique flavor profile and character.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {coffeeProducts.map((product, index) => (
-              <Card
-                key={index}
-                className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white border-amber-200"
-              >
-                <CardContent className="p-0">
-                  <div className="relative overflow-hidden">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-amber-900 mb-2">
-                      {product.name}
-                    </h3>
-                    <p className="text-amber-800 mb-4">{product.description}</p>
-                    <div className="flex justify-between items-center">
-                      <span className="text-2xl font-bold text-amber-700">
-                        {product.price}
-                      </span>
-                      <Button
-                        size="sm"
-                        className="bg-amber-700 hover:bg-amber-800 text-white"
-                      >
-                        Add to Cart
-                      </Button>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold text-amber-900 mb-4">
-              Why Choose Kim Coffee?
-            </h2>
-            <p className="text-lg text-amber-800 max-w-3xl mx-auto">
-              We are committed to delivering exceptional coffee experiences
-              while supporting our local communities.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className="text-center group hover:scale-105 transition-transform duration-300"
-              >
-                <div className="flex justify-center mb-4">
-                  <div className="w-16 h-16 bg-amber-100 cursor-pointer rounded-full flex items-center justify-center group-hover:bg-amber-200 transition-colors">
-                    {feature.icon}
-                  </div>
-                </div>
-                <h3 className="text-xl font-semibold text-amber-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-amber-800">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-amber-700 to-amber-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Ready to Experience Nigerian Coffee Excellence?
-          </h2>
-          <p className="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
-            Join thousands of coffee lovers who have discovered the rich,
-            authentic taste of Kim Coffee.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/products">
-              <Button
-                size="lg"
-                className="bg-white text-amber-700 hover:bg-amber-50"
-              >
-                Order Now
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white hover:border-amber-900 hover:bg-amber-900 hover:text-white bg-white text-amber-700"
-              >
-                Contact Us
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+      <ProductSection
+        title="Our Premium Coffee Selection"
+        subtitle="Discover our carefully curated selection of premium Nigerian coffee beans, each with its unique flavor profile and character."
+        products={coffeeProducts}
+      />
     </div>
   );
 }
