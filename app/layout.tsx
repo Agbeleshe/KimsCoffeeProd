@@ -3,6 +3,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Footer from "@/components/reuseables/Footer";
+import { Toaster } from "sonner"; // ✅ Import Sonner notification component
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,9 +13,8 @@ export const metadata: Metadata = {
     "Discover the rich heritage of Nigerian coffee with Kim Coffee. Premium coffee beans from local farms, expertly roasted for the perfect flavor. Order online today!",
   keywords:
     "Nigerian coffee, premium coffee, coffee beans, Kim Coffee, Plateau, Nigeria coffee, African coffee, coffee delivery Nigeria",
-
   icons: {
-    icon: "/logo.png", // or "/logo.png"
+    icon: "/logo.png",
   },
   openGraph: {
     title: "Kim Coffee - Premium Nigerian Coffee",
@@ -33,6 +33,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        {/* 🔔 Sonner Toast Container */}
+        <Toaster richColors position="top-right" closeButton />
+
         <NavBar />
         <div className="max-w-[100vw] overflow-hidden relative">{children}</div>
         <Footer />
