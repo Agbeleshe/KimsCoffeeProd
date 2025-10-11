@@ -1,6 +1,7 @@
+"use client";
+
 import { Coffee, Lightbulb, Heart, Users, Leaf } from "lucide-react";
 import React from "react";
-import bgImage from "../../public/captures/KimsCoffeeNine.jpg";
 
 const sections = [
   {
@@ -57,21 +58,25 @@ const sections = [
 
 const CompanyValues = () => {
   return (
-    <section
-      className="bg-white py-20 px-4 sm:px-6 lg:px-8 relative"
-      style={{
-        backgroundImage: `url(${bgImage.src})`,
-        backgroundSize: "cover",
-      }}
-    >
-      {/* overlay */}
-      <div className="absolute top-0 bottom-0 left-0 right-0 bg-amber-800/80 "></div>
+    <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* 🎥 Video background */}
+      <video
+        className="absolute top-0 left-0 w-full h-full object-cover"
+        src="https://res.cloudinary.com/dlctwbems/video/upload/v1728597358/88935-608446084_small_oeigim.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+      />
 
-      {/* Contenet */}
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-amber-900/80" />
+
+      {/* Content */}
       <div className="relative z-10">
         <div className="max-w-6xl mx-auto text-center mb-16">
-          <h2 className="text-4xl font-bold text-amber-50 ">What Drives Us</h2>
-          <p className="text-amber-50  mt-2 text-lg max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-amber-50">What Drives Us</h2>
+          <p className="text-amber-100 mt-2 text-lg max-w-2xl mx-auto">
             At Kim’s Coffee, we blend passion, purpose, and people to cultivate
             a culture rooted in quality and sustainability.
           </p>
@@ -81,7 +86,7 @@ const CompanyValues = () => {
           {sections.map((section, idx) => (
             <div
               key={idx}
-              className="bg-amber-50 hover:shadow-lg min-h-[200px] transition-shadow duration-300 p-6 rounded-2xl border border-amber-100 flex flex-col"
+              className="bg-amber-50/90 min-h-[150px] hover:shadow-lg transition-shadow duration-300 p-6 rounded-2xl border border-amber-100 flex flex-col"
             >
               <div className="flex items-center space-x-3 mb-4">
                 {section.icon}

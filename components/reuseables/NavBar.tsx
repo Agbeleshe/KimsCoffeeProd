@@ -50,9 +50,12 @@ const NavBar = () => {
                 {label}
               </Link>
             ))}
-            <Button className="bg-amber-700 hover:bg-amber-800 text-white">
+            <Link
+              href={"/products"}
+              className="bg-amber-700 p-2 rounded-md hover:bg-amber-800 text-white"
+            >
               Order Now
-            </Button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -86,12 +89,13 @@ const NavBar = () => {
               </Link>
             ))}
 
-            <Button
-              className="mx-3 mt-2 bg-amber-700 hover:bg-amber-800 text-white w-[90%] absolute bottom-[90px]"
+            <Link
+              href={"/products"}
+              className="mx-3 mt-2 bg-amber-700 text-center p-2 rounded-md hover:bg-amber-800 text-white w-[90%] absolute bottom-[90px]"
               onClick={() => setIsMenuOpen(false)}
             >
               Order Now
-            </Button>
+            </Link>
           </div>
         </div>
       )}
