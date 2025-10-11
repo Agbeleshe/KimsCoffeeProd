@@ -21,7 +21,7 @@ const About = () => {
                 Our Story
               </h3>
               <p className="text-amber-800 leading-relaxed text-center md:text-left">
-                Kim Coffee was born from a passion for exceptional coffee and a
+                Kim Coffee is born from a passion for exceptional coffee and a
                 commitment to showcasing Nigeria rich coffee heritage. We work
                 directly with local farmers, ensuring fair trade practices and
                 the highest quality beans.
