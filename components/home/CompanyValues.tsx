@@ -59,7 +59,6 @@ const sections = [
 const CompanyValues = () => {
   return (
     <section className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* 🎥 Video background */}
       <video
         className="absolute top-0 left-0 w-full h-full object-cover"
         src="https://res.cloudinary.com/dlctwbems/video/upload/v1728597358/88935-608446084_small_oeigim.mp4"
