@@ -81,7 +81,7 @@ export default function Contact() {
       details: [
         "Monday - Friday: 6AM - 10PM",
         "Saturday: 7AM - 9PM",
-        "Sunday: 8AM - 8PM",
+        "Sunday: 3PM - 6PM",
       ],
     },
   ];
@@ -291,12 +291,12 @@ export default function Contact() {
                     <div className="h-64 bg-amber-100 rounded-t-lg flex items-center justify-center">
                       <div className="text-center">
                         <MapPin className="w-12 h-12 text-amber-600 mx-auto mb-2" />
-                        <p className="text-amber-800 font-medium">
+                        {/* <p className="text-amber-800 font-medium">
                           Interactive Map
                         </p>
                         <p className="text-amber-700 text-sm">
                           123 Coffee Street, Du
-                        </p>
+                        </p> */}
                         <p className="text-amber-700 text-sm">
                           Plateau, Nigeria
                         </p>
@@ -307,15 +307,15 @@ export default function Contact() {
                         Store Information
                       </h3>
                       <div className="space-y-2 text-amber-800">
-                        <p>
+                        {/* <p>
                           <strong>Address:</strong> 123 Coffee Street, Du,
                           Plateau, Nigeria
-                        </p>
+                        </p> */}
                         <p>
                           <strong>Phone:</strong> +234 806 956 9863
                         </p>
                         <p>
-                          <strong>Email:</strong> store@kimcoffee.ng
+                          <strong>Email:</strong> kimscoffee24@gmail.com
                         </p>
                         <p>
                           <strong>Parking:</strong> Free parking available
@@ -343,7 +343,7 @@ export default function Contact() {
                       • Email responses within 2 hours during business hours
                     </li>
                     <li>• Phone support available 24/7 for urgent matters</li>
-                    <li>• Live chat support on our website</li>
+
                     <li>• Social media responses within 30 minutes</li>
                   </ul>
                 </CardContent>

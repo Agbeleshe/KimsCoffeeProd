@@ -13,6 +13,7 @@ import Link from "next/link";
 import React from "react";
 import Logo from "../../public/logo.png";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -58,8 +59,14 @@ const socialLinks = [
 ];
 
 const Footer = () => {
+  const pathname = usePathname();
   return (
-    <footer id="contact" className="bg-amber-900 text-white py-16">
+    <footer
+      id="contact"
+      className={` ${
+        pathname === "/admin" ? "hidden" : "block"
+      }  bg-amber-900 text-white py-1`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}

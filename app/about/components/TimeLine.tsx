@@ -223,7 +223,7 @@ export const TimelineSection = () => {
         <div className="mt-16 text-center">
           <div className="inline-block p-6 rounded-2xl bg-gradient-to-br from-amber-100 to-orange-100 border border-amber-200 shadow-lg">
             <p className="text-amber-900 font-semibold text-lg">
-              🎉 The journey continues...
+              The journey continues...
             </p>
             <p className="text-amber-800/80 text-sm mt-2">
               Join us as we brew the future of Nigerian coffee

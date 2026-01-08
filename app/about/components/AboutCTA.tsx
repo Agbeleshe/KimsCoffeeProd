@@ -11,7 +11,7 @@ export const CTASection = () => {
           Ready to Join Our Coffee Journey?
         </h2>
         <p className="text-xl text-amber-100 mb-8 max-w-2xl mx-auto">
-          Experience the passion, quality, and community spirit that makes Kim
+          Experience the passion, quality, and community spirit that makes Kims
           Coffee special.
         </p>
 
@@ -28,7 +28,7 @@ export const CTASection = () => {
             <Button
               size="lg"
               variant="outline"
-              className=" border-amber-900  hover:bg-amber-900 hover:text-white min-w-[250px]"
+              className=" border-amber-900  bg-amber-900 hover:bg-amber-900/80 hover:text-amber-50 text-white min-w-[250px]"
             >
               Get In Touch
             </Button>
