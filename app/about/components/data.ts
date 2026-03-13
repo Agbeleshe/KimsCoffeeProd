@@ -1,4 +1,4 @@
-import { Coffee, Users, Award, TrendingUp, Globe, Heart } from "lucide-react";
+import { Coffee, Users, Award, TrendingUp, Globe, Heart, Sparkles } from "lucide-react";
 import dummyImg from "../../../public/dummyImg.png";
 
 export const timeline = [
@@ -49,6 +49,14 @@ export const timeline = [
       "Building a legacy of quality and community impact, with plans for international expansion.",
     icon: Globe,
     color: "from-purple-500 to-violet-500",
+  },
+  {
+    year: "2026",
+    title: "Sustainable Future",
+    description:
+      "Pioneering carbon-neutral roasting and opening flagship stores in global coffee capitals.",
+    icon: Sparkles,
+    color: "from-cyan-500 to-blue-500",
   },
 ];
 

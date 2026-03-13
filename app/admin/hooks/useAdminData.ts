@@ -17,7 +17,7 @@ import { db } from "@/lib/firebase/client";
 import { useAdminStore } from "@/lib/stores/adminStore";
 import { useImageUpload } from "./useImageUpload";
 import { toast } from "sonner";
-import { Product, AdminOrder, DeliveryStatus } from "../types";
+import { Product, AdminOrder, DeliveryStatus, Complaint } from "../types";
 
 const deliveryStatusOptions: DeliveryStatus[] = [
   "pending",
@@ -50,6 +50,8 @@ export function useAdminData(authUser: any) {
   const [loadingProducts, setLoadingProducts] = useState(true);
   const [orders, setOrders] = useState<AdminOrder[]>([]);
   const [loadingOrders, setLoadingOrders] = useState(true);
+  const [complaints, setComplaints] = useState<Complaint[]>([]);
+  const [loadingComplaints, setLoadingComplaints] = useState(true);
   const [deliveryFeeValue, setDeliveryFeeValue] = useState(0);
   const [deliveryFeeInput, setDeliveryFeeInput] = useState("0");
   const [loadingDeliveryFee, setLoadingDeliveryFee] = useState(true);
@@ -64,6 +66,20 @@ export function useAdminData(authUser: any) {
   >({});
   const [activeTab, setActiveTab] = useState("list");
   const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  const [soundEnabled, setSoundEnabled] = useState(true);
+
+  // Load sound settings from localStorage
+  useEffect(() => {
+    const savedSound = localStorage.getItem("admin_sound_enabled");
+    if (savedSound !== null) {
+      setSoundEnabled(savedSound === "true");
+    }
+  }, []);
+
+  const handleToggleSound = (enabled: boolean) => {
+    setSoundEnabled(enabled);
+    localStorage.setItem("admin_sound_enabled", enabled.toString());
+  };
 
   // Fetch products from Firebase
   useEffect(() => {
@@ -241,6 +257,27 @@ export function useAdminData(authUser: any) {
       ordersRef,
       (snapshot) => {
         const orderList: AdminOrder[] = [];
+        let hasNewOrder = false;
+
+        snapshot.docChanges().forEach((change) => {
+          if (change.type === "added") {
+            const data = change.doc.data();
+            const createdAt = data.createdAt?.toDate?.() || new Date(data.createdAt || Date.now());
+            const secondsSinceCreation = (Date.now() - createdAt.getTime()) / 1000;
+            
+            // Only trigger sound if the order is actually new (last 2 minutes) 
+            // and NOT on initial page load (more than 5 orders added at once usually means initial load)
+            if (secondsSinceCreation < 120 && snapshot.size > 0) {
+              hasNewOrder = true;
+            }
+          }
+        });
+
+        if (hasNewOrder && typeof window !== "undefined" && window.location.pathname.startsWith("/admin") && soundEnabled) {
+          const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3");
+          audio.play().catch(err => console.error("Error playing notification sound:", err));
+        }
+
         snapshot.forEach((docSnapshot) => {
           const data = docSnapshot.data();
           const createdAtValue =
@@ -289,6 +326,7 @@ export function useAdminData(authUser: any) {
             createdAtLabel: new Intl.DateTimeFormat("en-NG", {
               dateStyle: "medium",
               timeStyle: "short",
+              hour12: true,
             }).format(createdAtValue),
           });
         });
@@ -418,6 +456,56 @@ export function useAdminData(authUser: any) {
     setMessage("");
   };
 
+  // Fetch complaints from Firebase
+  useEffect(() => {
+    if (!authUser) return;
+
+    setLoadingComplaints(true);
+    const complaintsRef = query(
+      collection(db, "complaints"),
+      orderBy("createdAt", "desc")
+    );
+
+    const unsubscribe = onSnapshot(
+      complaintsRef,
+      (snapshot) => {
+        const list: Complaint[] = [];
+        snapshot.forEach((doc) => {
+          const data = doc.data();
+          list.push({
+            id: doc.id,
+            orderId: data.orderId || "",
+            customerName: data.customerName || "",
+            complaintText: data.complaintText || "",
+            status: data.status || "open",
+            createdAt: data.createdAt,
+          });
+        });
+        setComplaints(list);
+        setLoadingComplaints(false);
+      },
+      (error) => {
+        console.error("Error fetching complaints:", error);
+        setLoadingComplaints(false);
+      }
+    );
+
+    return () => unsubscribe();
+  }, [authUser]);
+
+  const handleToggleComplaintStatus = async (complaintId: string, currentStatus: "open" | "closed") => {
+    const newStatus = currentStatus === "open" ? "closed" : "open";
+    try {
+      await updateDoc(doc(db, "complaints", complaintId), {
+        status: newStatus,
+      });
+      toast.success(`Complaint marked as ${newStatus}`);
+    } catch (error) {
+      console.error("Error updating complaint status:", error);
+      toast.error("Failed to update status");
+    }
+  };
+
   return {
     // Data
     products,
@@ -459,5 +547,10 @@ export function useAdminData(authUser: any) {
     setImagePreview,
     setMessage,
     isSavingFee,
+    soundEnabled,
+    handleToggleSound,
+    complaints,
+    loadingComplaints,
+    handleToggleComplaintStatus,
   };
 }

@@ -1,6 +1,6 @@
  "use client";
 
-import { Star, MessageCircle, ShoppingBag, Award } from "lucide-react";
+import { ShoppingCart, ShoppingBag } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Product } from "../hooks/useProducts";
@@ -123,14 +123,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               </div>
             )}
 
-          {/* Quality badge - Show for premium products */}
-          {currentProduct.rating >= 4.5 && (
-            <div className="absolute top-3 left-3">
-              <div className="bg-gradient-to-br from-amber-400 to-yellow-500 text-white p-2 rounded-full shadow-lg">
-                <Award className="w-4 h-4" />
-              </div>
-            </div>
-          )}
 
           {/* Running low badge */}
           {isRunningLow && (
@@ -193,26 +185,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
             {currentProduct.description}
           </p>
 
-          {/* Rating */}
-          <div className="flex items-center justify-between py-2">
-            <div className="flex items-center gap-1">
-              {[...Array(5)].map((_, i) => (
-                <Star
-                  key={i}
-                  className={`w-4 h-4 transition-all duration-200 ${
-                    i < Math.floor(currentProduct.rating)
-                      ? "text-yellow-400 fill-yellow-400 scale-110"
-                      : "text-gray-300"
-                  }`}
-                />
-              ))}
-            </div>
-            <span className="text-sm font-medium text-amber-700">
-              {currentProduct.rating.toFixed(1)}{" "}
-              <span className="text-gray-400">({currentProduct.reviews})</span>
-            </span>
-          </div>
-
           {/* Features */}
           {currentProduct.features && currentProduct.features.length > 0 && (
             <div className="flex flex-wrap gap-2">
@@ -271,7 +243,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               disabled={!isInStock}
               className={`relative overflow-hidden group/btn shadow-lg transition-all duration-300 ${
                 isInStock
-                  ? "bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white hover:shadow-xl hover:scale-105"
+                  ? "bg-gradient-to-r from-amber-800 to-amber-900 hover:from-amber-900 hover:to-orange-950 text-white hover:shadow-xl hover:scale-105"
                   : "bg-gray-200 text-gray-400 cursor-not-allowed"
               }`}
             >
@@ -281,7 +253,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
               <span className="relative flex items-center gap-1.5">
                 {isInStock ? (
                   <>
-                    <MessageCircle className="w-4 h-4" />
+                    <ShoppingCart className="w-4 h-4" />
                     Order Now
                   </>
                 ) : (

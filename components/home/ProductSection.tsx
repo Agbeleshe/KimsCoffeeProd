@@ -1,39 +1,24 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
-
-interface Product {
-  name: string;
-  description: string;
-  image: string;
-  price: string;
-}
+import Link from "next/link";
+import { ProductCard } from "@/app/products/components/ProductCard";
+import { Product } from "@/app/products/hooks/useProducts";
+import { ArrowRight } from "lucide-react";
 
 interface ProductSectionProps {
   title: string;
   subtitle: string;
   products: Product[];
+  isLoading?: boolean;
 }
 
 export default function ProductSection({
   title,
   subtitle,
   products,
+  isLoading = false,
 }: ProductSectionProps) {
-  // ✅ Replace with your official business WhatsApp number
-  const whatsappNumber = "2348069569863";
-
-  // Function to handle redirect
-  const handleOrder = (productName: string, price: string) => {
-    const message = `Hello Kim Coffee, I’d like to order ${productName} priced at ${price}.`;
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-      message
-    )}`;
-    window.open(whatsappUrl, "_blank");
-  };
-
   return (
     <section
       id="products"
@@ -49,49 +34,32 @@ export default function ProductSection({
         </div>
 
         {/* Products */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product, index) => (
-            <Card
-              key={index}
-              className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 bg-white border-amber-200"
-            >
-              <CardContent className="p-0">
-                <div className="relative overflow-hidden">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    height={200}
-                    width={800}
-                    className="!w-full !h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
+        {isLoading ? (
+          <div className="flex justify-center items-center min-h-[400px]">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-600"></div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        )}
 
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-amber-900 mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-amber-800 mb-4 min-h-[55px]">
-                    {product.description}
-                  </p>
-
-                  <div className="flex justify-between items-center">
-                    <span className="text-2xl font-bold text-amber-700">
-                      {product.price}
-                    </span>
-                    <Button
-                      size="sm"
-                      onClick={() => handleOrder(product.name, product.price)}
-                      className="bg-green-600 hover:bg-green-700 text-white"
-                    >
-                      Order via WhatsApp
-                    </Button>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
+        {/* View All Button */}
+        {!isLoading && products.length > 0 && (
+          <div className="mt-16 text-center">
+            <Link href="/products" prefetch={true}>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white px-8 py-6 rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 group font-semibold text-lg"
+              >
+                View All Products
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

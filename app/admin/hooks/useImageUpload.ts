@@ -20,7 +20,7 @@ export const useImageUpload = () => {
   const [uploadingImage, setUploadingImage] = useState(false);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-  const uploadImageToImgBB = async (file: File): Promise<string> => {
+  const uploadImageToCloudinary = async (file: File): Promise<string> => {
     if (!file) throw new Error("No file provided");
 
     // Validate file type
@@ -38,28 +38,31 @@ export const useImageUpload = () => {
       );
     }
 
-    // Validate file size (32MB limit for free tier)
-    if (file.size > 32 * 1024 * 1024) {
+    // Validate file size (Cloudinary free tier limit is generous, but let's keep a sane 10MB limit)
+    if (file.size > 10 * 1024 * 1024) {
       throw new Error(
-        "Image size exceeds 32MB limit. Please choose a smaller file."
+        "Image size exceeds 10MB limit. Please choose a smaller file."
       );
     }
 
     setUploadingImage(true);
 
     try {
-      const formData = new FormData();
-      formData.append("image", file);
+      const cloudName = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+      const uploadPreset = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET;
 
-      const apiKey = process.env.NEXT_PUBLIC_IMGBB_API_KEY;
-      if (!apiKey) {
+      if (!cloudName || !uploadPreset) {
         throw new Error(
-          "ImgBB API key is not configured. Add NEXT_PUBLIC_IMGBB_API_KEY to .env.local"
+          "Cloudinary configuration is missing. Check NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME and NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET in .env.local"
         );
       }
 
+      const formData = new FormData();
+      formData.append("file", file);
+      formData.append("upload_preset", uploadPreset);
+
       const response = await fetch(
-        `https://api.imgbb.com/1/upload?key=${apiKey}`,
+        `https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,
         {
           method: "POST",
           body: formData,
@@ -67,20 +70,17 @@ export const useImageUpload = () => {
       );
 
       if (!response.ok) {
-        throw new Error(`Upload failed with status: ${response.status}`);
+        const errorData = await response.json();
+        throw new Error(errorData.error?.message || `Upload failed with status: ${response.status}`);
       }
 
-      const result: ImgBBResponse = await response.json();
-
-      if (!result.success) {
-        throw new Error("ImgBB API returned an error");
-      }
+      const result = await response.json();
 
       // Create preview URL
       const previewUrl = URL.createObjectURL(file);
       setImagePreview(previewUrl);
 
-      return result.data.url;
+      return result.secure_url;
     } catch (error) {
       throw error;
     } finally {
@@ -98,7 +98,8 @@ export const useImageUpload = () => {
   return {
     uploadingImage,
     imagePreview,
-    uploadImageToImgBB,
+    uploadImageToCloudinary, // Renamed but can keep alias for backward compatibility if needed
+    uploadImageToImgBB: uploadImageToCloudinary, // Alias for compatibility
     clearImagePreview,
     setImagePreview,
   };

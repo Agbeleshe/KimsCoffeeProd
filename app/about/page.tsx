@@ -31,7 +31,7 @@ export default function About() {
       <TimelineSection />
 
       {/* Team Section */}
-      <TeamSection />
+      {/* <TeamSection /> */}
 
       {/* CTA Section */}
       <CTASection />

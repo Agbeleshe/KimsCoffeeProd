@@ -13,6 +13,7 @@ export async function POST(request: Request) {
     console.log("Received:", { email, orderId, amount, fullName });
 
     // Validate required fields
+    
     if (!email || !orderId) {
       return NextResponse.json(
         { error: "Missing email or orderId" },

@@ -7,6 +7,8 @@ import AdminLayout from "./AdminLayout";
 import OrdersContent from "./components/OrcderContent"; 
 import OverviewContent from "./components/OverviewContent";
 import PostProductContent from "./components/PostProductContent";
+import SettingsContent from "./components/SettingsContent";
+import ComplaintsContent from "./components/ComplaintsContent";
 import { useAdminData } from "./hooks/useAdminData";
 
 export default function AdminPage() {
@@ -60,6 +62,11 @@ export default function AdminPage() {
     clearImagePreview,
     setImagePreview,
     setMessage,
+    soundEnabled,
+    handleToggleSound,
+    complaints,
+    loadingComplaints,
+    handleToggleComplaintStatus,
   } = useAdminData(authUser);
 
   const [activeTab, setActiveTab] = useState("overview");
@@ -133,6 +140,21 @@ export default function AdminPage() {
           setActiveTab={setPostProductTab}
           editingProduct={editingProduct}
           onCreateNew={handleCreateNew}
+        />
+      )}
+
+      {activeTab === "settings" && (
+        <SettingsContent 
+          soundEnabled={soundEnabled}
+          onToggleSound={handleToggleSound}
+        />
+      )}
+
+      {activeTab === "complaints" && (
+        <ComplaintsContent 
+          complaints={complaints}
+          loading={loadingComplaints}
+          onToggleStatus={handleToggleComplaintStatus}
         />
       )}
     </AdminLayout>

@@ -51,3 +51,12 @@ export type AdminOrder = {
   customerInfo: CustomerInfo;
   createdAtLabel: string;
 };
+
+export interface Complaint {
+  id: string;
+  orderId: string;
+  customerName: string;
+  complaintText: string;
+  status: "open" | "closed";
+  createdAt: any;
+}

@@ -11,6 +11,7 @@ const links = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/products", label: "Products" },
+  { href: "/track", label: "Track Purchase" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -35,6 +36,7 @@ const NavBar = () => {
         <div className="flex justify-between items-center h-16">
           <Link
             href={"/"}
+            prefetch
             className="flex items-center space-x-2 cursor-pointer"
           >
             <div className="flex items-center space-x-2">
@@ -54,13 +56,19 @@ const NavBar = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {links.map(({ href, label }) => (
-              <Link key={href} href={href} className={linkClass(href)}>
+              <Link
+                key={href}
+                href={href}
+                className={linkClass(href)}
+                prefetch={true}
+              >
                 {label}
               </Link>
             ))}
             <Link
               href={"/cart"}
               className="bg-amber-700 p-2 flex rounded-md hover:bg-amber-800 text-white"
+              prefetch={true}
             >
               Cart
               <ShoppingCart className="w-5 h-5 mx-2 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -93,6 +101,7 @@ const NavBar = () => {
                 href={href}
                 onClick={() => setIsMenuOpen(false)}
                 className={`block px-3 py-2 ${linkClass(href)}`}
+                prefetch={true}
               >
                 {label}
               </Link>
@@ -102,6 +111,7 @@ const NavBar = () => {
               href={"/cart"}
               className="mx-3 mt-2 bg-amber-700 text-center p-2 rounded-md hover:bg-amber-800 text-white w-[90%] absolute bottom-[90px]"
               onClick={() => setIsMenuOpen(false)}
+              prefetch={true}
             >
               <div className="flex items-center justify-center max-w-10">
                 Cart
