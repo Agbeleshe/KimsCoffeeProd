@@ -23,9 +23,9 @@ export async function POST(request: Request) {
 
     // Send actual email via Resend
     const { data, error } = await resend.emails.send({
-      from: "Kim Coffee <onboarding@resend.dev>",
+      from: "Kim's Coffee <onboarding@resend.dev>",
       to: [email],
-      subject: `Your Kim Coffee Order #${orderId} is Confirmed! ☕`,
+      subject: `Your Kim's Coffee Order #${orderId} is Confirmed! ☕`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h1 style="color: #d97706; border-bottom: 2px solid #fbbf24; padding-bottom: 10px;">
@@ -39,12 +39,12 @@ export async function POST(request: Request) {
             <p><strong>Order Date:</strong> ${new Date().toLocaleDateString()}</p>
           </div>
           
-          <p>Your premium Kim Coffee order has been received and is being processed.</p>
+          <p>Your premium Kim's Coffee order has been received and is being processed.</p>
           <p>We'll notify you when your order ships!</p>
           
           <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280; font-size: 14px;">
             <p>If you have any questions, reply to this email or contact us.</p>
-            <p>Thank you for choosing Kim Coffee! ☕</p>
+            <p>Thank you for choosing Kim's Coffee! ☕</p>
           </div>
         </div>
       `,

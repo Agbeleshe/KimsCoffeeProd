@@ -196,7 +196,7 @@ export const TimelineSection = () => {
           </h2>
           <p className="text-base md:text-lg text-amber-800/80 max-w-3xl mx-auto leading-relaxed px-4">
             From our founding to today, here are the key milestones that shaped
-            Kim Coffee into what it is today.
+            Kim's Coffee into what it is today.
           </p>
         </div>
 

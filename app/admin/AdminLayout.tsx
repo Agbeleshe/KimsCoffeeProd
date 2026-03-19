@@ -83,7 +83,7 @@ export default function AdminLayout({
               <div className="relative w-10 h-10 bg-white/5 rounded-xl border border-white/10 flex items-center justify-center overflow-hidden">
                 <Image 
                   src={Logo} 
-                  alt="Kim Coffee" 
+                  alt="Kim's Coffee" 
                   width={28} 
                   height={28}
                   className="object-contain"
@@ -231,7 +231,7 @@ export default function AdminLayout({
             
             {/* Bottom Spacer/Footer */}
             <div className="mt-20 pt-8 border-t border-gray-100 flex justify-between items-center text-[10px] font-black uppercase tracking-[0.2em] text-gray-300">
-              <p>&copy; 2024 Kim Coffee Admin</p>
+              <p>&copy; 2024 Kim's Coffee Admin</p>
               <div className="flex gap-4">
                 <span>V 2.1.0</span>
                 <span>Protected Portal</span>

@@ -28,6 +28,7 @@ const NavBar = () => {
 
   return (
     <nav
+  
       className={`${
         pathname === "/admin" ? "hidden" : "block"
       } bg-white/95 backdrop-blur-sm shadow-sm sticky top-0 z-50`}
@@ -48,7 +49,7 @@ const NavBar = () => {
                 width={15}
               />
               <span className="text-2xl font-bold text-amber-900">
-                Kims Coffee
+                Kim's Coffee
               </span>
             </div>
           </Link>

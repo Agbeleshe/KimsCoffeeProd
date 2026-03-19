@@ -78,7 +78,7 @@ const Footer = () => {
               <div className="relative w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-amber-500/50 transition-colors overflow-hidden">
                 <Image 
                   src={Logo} 
-                  alt="Kim Coffee" 
+                  alt="Kim's Coffee" 
                   width={48} 
                   height={48}
                   className="object-contain"
@@ -86,10 +86,10 @@ const Footer = () => {
               </div>
               <div>
                 <h2 className="text-2xl font-black tracking-tight text-white uppercase">
-                  Kim<span className="text-amber-600">Coffee</span>
+                  Kim's <span className="">Coffee</span>
                 </h2>
                 <p className="text-[10px] font-bold tracking-[0.2em] text-amber-500/60 uppercase">
-                  Est. 2024 • Plateau, NG
+                  Plateau, NG
                 </p>
               </div>
             </Link>
@@ -172,7 +172,7 @@ const Footer = () => {
         {/* Footer Bottom */}
         <div className="mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-amber-100/30 text-sm font-medium">
-            &copy; {new Date().getFullYear()} Kim Coffee. Handcrafted with passion in Nigeria.
+            &copy; {new Date().getFullYear()} Kim's Coffee. Handcrafted with passion in Nigeria.
           </p>
           <div className="flex gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-amber-500/20">
             <span>Premium Cultivation</span>

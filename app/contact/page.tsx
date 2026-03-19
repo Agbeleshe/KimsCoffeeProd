@@ -87,8 +87,8 @@ export default function Contact() {
 
   const faqs = [
     {
-      question: "What makes Kim Coffee different from other brands?",
-      answer: "Kim Coffee is committed to showcasing the exceptional quality of Nigerian coffee while supporting local farmers through fair trade practices. Our beans are carefully selected, expertly roasted, and delivered fresh to ensure the best possible coffee experience."
+      question: "What makes Kim's Coffee different from other brands?",
+      answer: "Kim's Coffee is committed to showcasing the exceptional quality of Nigerian coffee while supporting local farmers through fair trade practices. Our beans are carefully selected, expertly roasted, and delivered fresh to ensure the best possible coffee experience."
     },
     {
       question: "Do you offer nationwide delivery?",

@@ -14,7 +14,7 @@ export default function About() {
       <HeaderSection
         title="Our Story Of Passion and Excellence"
         subtitle="       From humble beginnings to becoming Nigeria premier coffee brand,
-              Kim Coffee represents a journey of dedication, quality, and
+              Kim's Coffee represents a journey of dedication, quality, and
               community impact."
       />
 

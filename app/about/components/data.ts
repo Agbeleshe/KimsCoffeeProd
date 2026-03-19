@@ -6,7 +6,7 @@ export const timeline = [
     year: "2018",
     title: "The Beginning",
     description:
-      "Kim Coffee was founded with a vision to showcase the rich heritage of Nigerian coffee to the world.",
+      "Kim's Coffee was founded with a vision to showcase the rich heritage of Nigerian coffee to the world.",
     icon: Coffee,
     color: "from-amber-500 to-orange-500",
   },
@@ -65,7 +65,7 @@ export const team = [
     name: "Mr Kim",
     role: "Founder & CEO",
     image: dummyImg,
-    bio: "Passionate about coffee and community development, Kimberly founded Kim Coffee to showcase Nigerian coffee excellence.",
+    bio: "Passionate about coffee and community development, Kimberly founded Kim's Coffee to showcase Nigerian coffee excellence.",
   },
   {
     name: "Jane Doe",

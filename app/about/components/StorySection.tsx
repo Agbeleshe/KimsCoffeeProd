@@ -6,15 +6,15 @@ export const StorySection = () => (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
       <div className="space-y-6">
         <h2 className="text-3xl sm:text-4xl font-bold text-amber-900">
-          The Kim Coffee Journey
+          The Kim's Coffee Journey
         </h2>
         <p className="text-amber-800 leading-relaxed text-lg">
-          Kim Coffee started with one goal: to bring the rich aroma and taste of
+          Kim's Coffee started with one goal: to bring the rich aroma and taste of
           Nigerian coffee to every home.
         </p>
         <p className="text-amber-800 leading-relaxed">
           Our farmers, our beans, and our community all blend together to create
-          the Kim Coffee experience.
+          the Kim's Coffee experience.
         </p>
 
         <div className="flex items-center space-x-6 pt-4">

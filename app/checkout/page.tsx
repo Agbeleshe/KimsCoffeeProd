@@ -233,7 +233,7 @@ const CheckoutPage = () => {
           name: customerInfo.fullName,
         },
         customizations: {
-          title: "Kim Coffee Order",
+          title: "Kim's Coffee Order",
           description: "Premium Nigerian coffee order",
           logo: `${window.location.origin}/logo.png`,
         },

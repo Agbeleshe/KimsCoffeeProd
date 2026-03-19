@@ -11,7 +11,7 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold text-amber-900 mb-4">
-              About Kims Coffee
+              About Kim's Coffee
             </h2>
           </div>
 
@@ -21,7 +21,7 @@ const About = () => {
                 Our Story
               </h3>
               <p className="text-amber-800 leading-relaxed text-center md:text-left">
-                Kim Coffee is born from a passion for exceptional coffee and a
+                Kim's Coffee is born from a passion for exceptional coffee and a
                 commitment to showcasing Nigeria rich coffee heritage. We work
                 directly with local farmers, ensuring fair trade practices and
                 the highest quality beans.

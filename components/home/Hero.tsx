@@ -19,9 +19,9 @@ const Hero = () => {
   return (
     <section id="home" className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#FAF7F2]">
       {/* Background Decorative Elements */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-amber-100/30 to-transparent -z-10" />
+      {/* <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-amber-100/30 to-transparent -z-10" />
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-amber-200/20 rounded-full blur-3xl -z-10" />
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-orange-100/20 rounded-full blur-[120px] -z-10" />
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-orange-100/20 rounded-full blur-[120px] -z-10" /> */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -46,7 +46,7 @@ const Hero = () => {
             </h1>
 
             <p className="text-xl text-amber-900/80 max-w-xl leading-relaxed font-medium">
-              Grown in the misty highlands of central Nigeria, Kims Coffee brings 
+              Grown in the misty highlands of central Nigeria, Kim's Coffee brings 
               the rich heritage of Plateau state straight to your cup. Authentic, bold, 
               and masterfully roasted.
             </p>
@@ -97,7 +97,7 @@ const Hero = () => {
               />
 
               {/* Floating Badges */}
-              <div className="absolute top-10 -right-4 bg-white/80 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-white/50 animate-[float_5s_ease-in-out_infinite_1s]">
+              {/* <div className="absolute top-10 -right-4 bg-white/80 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-white/50 animate-[float_5s_ease-in-out_infinite_1s]">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center">
                     <MapPin className="w-5 h-5 text-orange-700" />
@@ -119,11 +119,11 @@ const Hero = () => {
                     <p className="text-sm font-bold text-amber-950">Master Roasted</p>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
               {/* Decorative Logo */}
-              <div className="absolute -bottom-10 right-10 opacity-20 rotate-12">
-                <Image src={logo} alt="Kim Coffee Logo" width={180} height={180} />
+              <div className="absolute -bottom-10  opacity-20 rotate-12">
+                <Image src={logo} alt="Kim's Coffee Logo" width={180} height={180} />
               </div>
             </div>
           </div>

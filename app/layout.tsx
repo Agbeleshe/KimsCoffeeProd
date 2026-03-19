@@ -8,16 +8,16 @@ import { Toaster } from "sonner"; // ✅ Import Sonner notification component
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Kim Coffee - Premium Nigerian Coffee | Authentic Coffee Experience",
+  title: "Kim's Coffee - Premium Nigerian Coffee | Authentic Coffee Experience",
   description:
-    "Discover the rich heritage of Nigerian coffee with Kim Coffee. Premium coffee beans from local farms, expertly roasted for the perfect flavor. Order online today!",
+    "Discover the rich heritage of Nigerian coffee with Kim's Coffee. Premium coffee beans from local farms, expertly roasted for the perfect flavor. Order online today!",
   keywords:
-    "Nigerian coffee, premium coffee, coffee beans, Kim Coffee, Plateau, Nigeria coffee, African coffee, coffee delivery Nigeria",
+    "Nigerian coffee, premium coffee, coffee beans, Kim's Coffee, Plateau, Nigeria coffee, African coffee, coffee delivery Nigeria",
   icons: {
     icon: "/logo.png",
   },
   openGraph: {
-    title: "Kim Coffee - Premium Nigerian Coffee",
+    title: "Kim's Coffee - Premium Nigerian Coffee",
     description:
       "Experience the finest coffee beans grown in the heart of Nigeria. From our farms to your cup.",
     type: "website",

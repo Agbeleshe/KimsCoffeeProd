@@ -13,7 +13,7 @@ export const TeamSection = () => {
             Meet Our Leadership
           </h2>
           <p className="text-lg text-amber-800 max-w-3xl mx-auto">
-            The passionate individuals driving Kim Coffee’s mission forward.
+            The passionate individuals driving Kim's Coffee’s mission forward.
           </p>
         </div>
 

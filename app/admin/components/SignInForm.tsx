@@ -40,7 +40,7 @@ export default function SignInForm({
         {/* Logo/Header */}
         <div className="text-center mb-5">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 mb-4">
-            <Image src={logo} alt="Kim Coffee Logo" width={64} height={64} />
+            <Image src={logo} alt="Kim's Coffee Logo" width={64} height={64} />
           </div>
         </div>
 
