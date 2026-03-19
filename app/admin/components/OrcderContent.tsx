@@ -9,6 +9,20 @@ import { db } from "@/lib/firebase/client";
 
 import { AdminOrder, DeliveryStatus } from "../types";
 import { currencyFormatter } from "../utils";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Phone, MapPin, Mail, MessageCircle, ExternalLink, Calendar, Hash, CreditCard, MoreVertical, Eye } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 interface OrdersContentProps {
   orders: AdminOrder[];
@@ -49,6 +63,15 @@ export default function OrdersContent({
 }: OrdersContentProps) {
   const [statusFilter, setStatusFilter] = useState<DeliveryStatus | "all">("all");
   const [dateFilter, setDateFilter] = useState<string>("");
+  const [selectedOrder, setSelectedOrder] = useState<AdminOrder | null>(null);
+
+  const handleWhatsAppChat = (phone: string) => {
+    // Remove non-numeric characters for WhatsApp link
+    const cleanPhone = phone.replace(/\D/g, "");
+    // If it starts with 0, replace with 234 (Nigeria) assuming local context from "KimCoffee" and "₦"
+    const finalPhone = cleanPhone.startsWith("0") ? "234" + cleanPhone.slice(1) : cleanPhone;
+    window.open(`https://wa.me/${finalPhone}`, "_blank");
+  };
 
   const filteredOrders = orders.filter((order) => {
     // Status filter
@@ -69,10 +92,10 @@ export default function OrdersContent({
       <div className="rounded-2xl border border-amber-100 bg-white/90 p-6 shadow-sm backdrop-blur-sm">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <p className="text-sm font-semibold text-amber-600">
+            <p className="text-sm font-black text-amber-900 uppercase tracking-tight">
               Default delivery fee
             </p>
-            <p className="text-xs text-amber-400">
+            <p className="text-xs text-amber-800 font-medium">
               This value is used in the checkout before order-level confirmation.
             </p>
           </div>
@@ -95,7 +118,7 @@ export default function OrdersContent({
           </div>
         </div>
         {!loadingDeliveryFee && (
-          <p className="mt-3 text-xs text-amber-500">
+          <p className="mt-3 text-xs text-amber-900 font-bold">
             Current saved value:{" "}
             <strong>{currencyFormatter.format(deliveryFeeValue)}</strong>
           </p>
@@ -115,11 +138,11 @@ export default function OrdersContent({
           <div className="flex flex-wrap items-center gap-3">
             {/* Status Filter */}
             <div className="flex flex-col gap-1">
-              <label className="text-[10px] font-bold text-amber-600 uppercase ml-1">Status</label>
+              <label className="text-[10px] font-black text-amber-900 uppercase ml-1 tracking-widest">Status</label>
               <select 
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value as any)}
-                className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900 focus:border-amber-400 focus:ring-2 focus:ring-amber-200"
+                className="rounded-xl border border-amber-200 bg-white px-3 py-2 text-sm text-amber-950 font-bold focus:border-amber-400 focus:ring-2 focus:ring-amber-200"
               >
                 <option value="all">All Statuses</option>
                 <option value="pending">Pending</option>
@@ -130,13 +153,13 @@ export default function OrdersContent({
 
             {/* Date Search Filter */}
             <div className="flex flex-col gap-1">
-              <label className="text-[10px] font-bold text-amber-600 uppercase ml-1">Search/Date</label>
+              <label className="text-[10px] font-black text-amber-900 uppercase ml-1 tracking-widest">Search/Date</label>
               <input 
                 type="text"
                 placeholder="Search date..."
                 value={dateFilter}
                 onChange={(e) => setDateFilter(e.target.value)}
-                className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900 placeholder:text-amber-300 focus:border-amber-400 focus:ring-2 focus:ring-amber-200"
+                className="rounded-xl border border-amber-200 bg-white px-3 py-2 text-sm text-amber-950 font-bold placeholder:text-amber-300 focus:border-amber-400 focus:ring-2 focus:ring-amber-200"
               />
             </div>
           </div>
@@ -159,10 +182,10 @@ export default function OrdersContent({
                 >
                   <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                     <div>
-                      <p className="text-sm text-amber-500">
+                      <p className="text-sm text-amber-900 font-black">
                         Order ID: {order.id}
                       </p>
-                      <p className="text-xs text-amber-400">
+                      <p className="text-xs text-amber-800 font-bold">
                         {order.createdAtLabel}
                       </p>
                     </div>
@@ -183,7 +206,7 @@ export default function OrdersContent({
                   </div>
 
                   <div className="grid gap-3 rounded-2xl border border-amber-200 bg-white p-3">
-                    <div className="flex flex-wrap items-center gap-3 text-xs text-amber-500">
+                    <div className="flex flex-wrap items-center gap-3 text-xs text-amber-800 font-bold">
                       <span>Payment: {order.paymentMethod}</span>
                       <span>Delivery status:</span>
                       <select
@@ -198,7 +221,7 @@ export default function OrdersContent({
                           )
                         }
                         disabled={updatingStatusIds.includes(order.id)}
-                        className="rounded-xl border border-amber-200 bg-amber-100 px-3 py-1 text-xs text-amber-700 focus:border-amber-400 focus:ring-2 focus:ring-amber-200"
+                        className="rounded-xl border border-amber-200 bg-white px-3 py-1 text-xs text-amber-900 font-black focus:border-amber-400 focus:ring-2 focus:ring-amber-200 outline-none"
                       >
                         {deliveryStatusOptions.map((status) => (
                           <option key={status} value={status}>
@@ -213,7 +236,13 @@ export default function OrdersContent({
                         <p className="font-semibold text-amber-800">
                           Customer
                         </p>
-                        <p>{order.customerInfo.fullName}</p>
+                        <button 
+                          onClick={() => setSelectedOrder(order)}
+                          className="text-left hover:text-amber-900 group flex items-center gap-1 transition-colors"
+                        >
+                          <span className="font-bold border-b border-amber-200 group-hover:border-amber-900">{order.customerInfo.fullName}</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </button>
                         <p>{order.customerInfo.phoneNumber}</p>
                         <p>
                           {order.customerInfo.city},{" "}
@@ -314,7 +343,8 @@ export default function OrdersContent({
                     <th className="pb-2 text-center">Items</th>
                     <th className="pb-2">Status</th>
                     <th className="pb-2">Delivery Fee</th>
-                    <th className="pb-2 pr-4 text-right">Total</th>
+                    <th className="pb-2 text-right">Total</th>
+                    <th className="pb-2 pr-4 text-center">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="space-y-4">
@@ -323,10 +353,10 @@ export default function OrdersContent({
                       {/* Order info */}
                       <td className="rounded-l-2xl border-y border-l border-amber-100 bg-amber-50/60 p-4 align-top backdrop-blur-sm group-hover:bg-amber-100/60 transition-colors">
                         <div className="space-y-1">
-                          <p className="text-xs font-semibold text-amber-600 uppercase tracking-wider">
+                          <p className="text-xs font-black text-amber-950 uppercase tracking-tighter">
                             {order.id}
                           </p>
-                          <p className="text-xs text-amber-400">
+                          <p className="text-[10px] text-amber-900 font-black">
                             {order.createdAtLabel}
                           </p>
                           <div className="mt-2 flex items-center gap-2">
@@ -349,9 +379,13 @@ export default function OrdersContent({
                       {/* Customer info */}
                       <td className="border-y border-amber-100 bg-amber-50/60 p-4 align-top backdrop-blur-sm group-hover:bg-amber-100/60 transition-colors">
                         <div className="text-sm">
-                          <p className="font-semibold text-amber-800">
-                            {order.customerInfo.fullName}
-                          </p>
+                          <button 
+                            onClick={() => setSelectedOrder(order)}
+                            className="font-bold text-amber-800 hover:text-amber-600 transition-colors flex items-center gap-1 group"
+                          >
+                            <span>{order.customerInfo.fullName}</span>
+                            <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          </button>
                           <p className="text-xs text-amber-600">
                             {order.customerInfo.phoneNumber}
                           </p>
@@ -447,10 +481,37 @@ export default function OrdersContent({
                           <p className="text-sm font-bold text-amber-900">
                              {currencyFormatter.format(order.totalAmount)}
                           </p>
-                          <p className="text-[10px] text-amber-400">
+                          <p className="text-[10px] text-stone-700 font-bold">
                             Sub: {currencyFormatter.format(order.cartSubtotal)}
                           </p>
                         </div>
+                      </td>
+
+                      {/* Hamburger Action Icon */}
+                      <td className="rounded-r-2xl border-y border-r border-amber-100 bg-amber-50/60 p-4 align-middle text-center backdrop-blur-sm group-hover:bg-amber-100/60 transition-colors">
+                        <DropdownMenu>
+                          <DropdownMenuTrigger asChild>
+                            <Button variant="ghost" size="icon" className="text-amber-900 hover:bg-amber-100 rounded-full h-8 w-8 transition-all">
+                              <MoreVertical className="w-5 h-5" />
+                            </Button>
+                          </DropdownMenuTrigger>
+                          <DropdownMenuContent align="end" className="rounded-xl border-amber-100 shadow-xl">
+                            <DropdownMenuItem 
+                              onClick={() => setSelectedOrder(order)}
+                              className="font-bold text-amber-950 gap-2 cursor-pointer focus:bg-amber-50"
+                            >
+                              <Eye className="w-4 h-4" />
+                              See Details
+                            </DropdownMenuItem>
+                            <DropdownMenuItem 
+                              onClick={() => handleWhatsAppChat(order.customerInfo.phoneNumber)}
+                              className="font-bold text-green-700 gap-2 cursor-pointer focus:bg-green-50"
+                            >
+                              <MessageCircle className="w-4 h-4" />
+                              Chat WhatsApp
+                            </DropdownMenuItem>
+                          </DropdownMenuContent>
+                        </DropdownMenu>
                       </td>
                     </tr>
                   ))}
@@ -460,6 +521,110 @@ export default function OrdersContent({
           </div>
         )}
       </div>
+      <Dialog open={!!selectedOrder} onOpenChange={(open) => !open && setSelectedOrder(null)}>
+        <DialogContent className="sm:max-w-[500px] rounded-3xl border-none shadow-2xl p-0 overflow-hidden">
+          {selectedOrder && (
+            <div className="flex flex-col">
+              {/* Header */}
+              <div className="bg-amber-900 px-6 py-8 text-white">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <p className="text-amber-200 text-[10px] font-bold uppercase tracking-widest mb-1">Customer Profile</p>
+                    <DialogTitle className="text-2xl font-black">{selectedOrder.customerInfo.fullName}</DialogTitle>
+                  </div>
+                  <div className="bg-white/10 p-2 rounded-xl backdrop-blur-sm">
+                    <Hash className="w-5 h-5 text-amber-200" />
+                  </div>
+                </div>
+                <p className="text-amber-100/60 text-xs mt-2 font-medium">Order ID: {selectedOrder.id}</p>
+              </div>
+
+              {/* Body */}
+              <div className="p-6 space-y-6">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div className="flex gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center shrink-0">
+                        <Phone className="w-4 h-4 text-amber-600" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold text-stone-400 uppercase">Phone Number</p>
+                        <p className="text-sm font-bold text-stone-800">{selectedOrder.customerInfo.phoneNumber}</p>
+                      </div>
+                    </div>
+                    
+                  
+                  </div>
+
+                  <div className="space-y-4">
+                    <div className="flex gap-3">
+                      <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center shrink-0">
+                        <MapPin className="w-4 h-4 text-amber-600" />
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-bold text-stone-400 uppercase">Location</p>
+                        <p className="text-sm font-bold text-stone-800">{selectedOrder.customerInfo.city}, {selectedOrder.customerInfo.state}</p>
+                      </div>
+                    </div>
+
+                    {selectedOrder.customerInfo.socialHandle && (
+                      <div className="flex gap-3">
+                        <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center shrink-0">
+                          <ExternalLink className="w-4 h-4 text-amber-600" />
+                        </div>
+                        <div>
+                          <p className="text-[10px] font-bold text-stone-400 uppercase">Social Handle</p>
+                          <p className="text-sm font-bold text-stone-800">{selectedOrder.customerInfo.socialHandle}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+
+                <div className="pt-6 border-t border-stone-100 flex gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center shrink-0">
+                    <MapPin className="w-4 h-4 text-amber-600" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold text-stone-400 uppercase">Full Delivery Address</p>
+                    <p className="text-sm font-bold text-stone-800">{selectedOrder.customerInfo.houseAddress}</p>
+                    <p className="text-xs text-stone-500 mt-1 italic">Landmark: {selectedOrder.customerInfo.majorLandmark || "Not specified"}</p>
+                  </div>
+                </div>
+
+                {/* WhatsApp Button */}
+                <div className="pt-2">
+                  <Button 
+                    onClick={() => handleWhatsAppChat(selectedOrder.customerInfo.phoneNumber)}
+                    className="w-full bg-green-600 hover:bg-green-700 text-white font-black h-14 rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-green-600/20 group"
+                  >
+                    <MessageCircle className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                    CHAT ON WHATSAPP
+                  </Button>
+                  <p className="text-[10px] text-center text-stone-400 font-bold uppercase tracking-wider mt-3">
+                    ⚠️ Note: User might not be on WhatsApp.
+                  </p>
+                </div>
+              </div>
+
+              {/* Footer Stat Summary */}
+              <div className="bg-stone-50 px-6 py-4 flex justify-between border-t border-stone-100">
+                <div className="flex items-center gap-2 text-stone-400">
+                  <Calendar className="w-3.5 h-3.5" />
+                  <span className="text-[10px] font-bold uppercase tracking-tighter">{selectedOrder.createdAtLabel}</span>
+                </div>
+                <div className="flex items-center gap-2 text-stone-400">
+                  <CreditCard className="w-3.5 h-3.5" />
+                  <span className="text-[10px] font-bold uppercase tracking-tighter">{selectedOrder.paymentMethod}</span>
+                </div>
+                <p className="text-amber-900 font-black text-sm">
+                  {currencyFormatter.format(selectedOrder.totalAmount)}
+                </p>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

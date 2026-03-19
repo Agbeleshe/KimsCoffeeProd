@@ -91,6 +91,16 @@ export default function AdminPage() {
       activeTab={activeTab}
       onTabChange={setActiveTab}
     >
+      {/* Mobile View Warning */}
+      <div className="md:hidden bg-amber-50 border-b border-amber-100 px-4 py-3 mb-6 -mt-6 -mx-6 flex items-start gap-3">
+        <div className="bg-amber-100 p-1.5 rounded-lg shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-amber-700"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+        </div>
+        <p className="text-[11px] font-bold text-amber-900 leading-tight">
+          NOTE: Use desktop view for better function. Admin features are optimized for larger screens.
+        </p>
+      </div>
+
       {activeTab === "overview" && (
         <OverviewContent
           products={products}

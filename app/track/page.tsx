@@ -3,9 +3,17 @@
 import React, { useState } from "react";
 import { db } from "@/lib/firebase/client";
 import { doc, getDoc, collection, addDoc, serverTimestamp, updateDoc } from "firebase/firestore";
-import { Search, Loader2, Package, Truck, CheckCircle, AlertCircle, MessageSquare, Info } from "lucide-react";
+import { Search, Loader2, Package, Truck, CheckCircle, AlertCircle, MessageSquare, Info, HelpCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 interface OrderProduct {
   id: string;
@@ -187,23 +195,34 @@ export default function TrackPage() {
         </div>
 
         {/* Search Bar */}
-        <form onSubmit={handleTrack} className="mb-8">
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Enter your Order ID (e.g. ZOV-9087-322P)"
-              value={orderId}
-              onChange={(e) => setOrderId(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 rounded-2xl border-2 border-amber-100 bg-white shadow-sm focus:border-amber-500 focus:ring-4 focus:ring-amber-50 Transition-all outline-none text-lg text-amber-900 font-medium"
-            />
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-amber-300 w-6 h-6" />
-            <Button 
-              type="submit" 
-              disabled={loading || !orderId.trim()}
-              className="absolute right-2 top-2 bottom-2 rounded-xl bg-amber-700 hover:bg-amber-800 text-white px-6 font-bold"
-            >
-              {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Track"}
-            </Button>
+        <form onSubmit={handleTrack} className="mb-12">
+          <div className="space-y-3">
+            <label className="text-sm font-bold text-amber-900 uppercase tracking-widest ml-1">
+              Order ID
+            </label>
+            <div className="relative group">
+              <input
+                type="text"
+                placeholder=" "
+                value={orderId}
+                onChange={(e) => setOrderId(e.target.value)}
+                className="w-full pl-12 pr-4 py-5 rounded-2xl border-2 border-stone-100 bg-white shadow-sm focus:border-amber-500 focus:ring-8 focus:ring-amber-500/5 transition-all outline-none text-xl text-amber-900 font-bold placeholder:text-stone-300"
+              />
+              <div className="absolute left-12 top-1/2 -translate-y-1/2 pointer-events-none text-stone-400 group-focus-within:invisible">
+                {orderId === "" && "ZOV-9087-322P"}
+              </div>
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-amber-300 w-6 h-6 group-focus-within:text-amber-500 transition-colors" />
+              <Button 
+                type="submit" 
+                disabled={loading || !orderId.trim()}
+                className="absolute right-2 top-4 bottom-2 rounded-xl bg-amber-900 hover:bg-black text-white px-8 font-black uppercase tracking-tighter transition-all hover:scale-[1.02] active:scale-95"
+              >
+                {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : "Track"}
+              </Button>
+            </div>
+            <p className="text-[10px] text-stone-400 font-medium ml-1">
+              Check your confirmation email or receipt for the ID.
+            </p>
           </div>
         </form>
 
@@ -435,6 +454,61 @@ export default function TrackPage() {
           </div>
         )}
       </div>
+
+      {/* Complaint Hover Icon - Absolute only in this page */}
+      <Dialog>
+        <DialogTrigger asChild>
+          <button className="fixed bottom-6 left-6 w-14 h-14 bg-white rounded-full shadow-2xl border border-amber-100 flex items-center justify-center text-amber-600 hover:bg-amber-50 hover:text-amber-700 hover:scale-110 transition-all group z-50">
+            <HelpCircle className="w-7 h-7" />
+            <span className="absolute left-16 bg-amber-900 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none uppercase tracking-widest shadow-xl">
+              How to complain
+            </span>
+          </button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px] rounded-3xl border-none shadow-2xl">
+          <DialogHeader>
+            <DialogTitle className="text-2xl font-black text-amber-900 tracking-tight">How to Lay a Complaint</DialogTitle>
+            <DialogDescription className="text-stone-500 font-medium pt-2">
+              Follow these simple steps to report any issues with your order.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="space-y-6 mt-4">
+            <div className="flex gap-4">
+              <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-black shrink-0">1</div>
+              <div>
+                <p className="font-bold text-amber-900">Enter Product ID</p>
+                <p className="text-sm text-stone-500">Provide the unique tracking ID from your receipt in the search bar above.</p>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-black shrink-0">2</div>
+              <div>
+                <p className="font-bold text-amber-900">Track Order</p>
+                <p className="text-sm text-stone-500">Click the 'Track' button to load your current order information.</p>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-black shrink-0">3</div>
+              <div>
+                <p className="font-bold text-amber-900">Scroll to Bottom</p>
+                <p className="text-sm text-stone-500">Once your order shows up, scroll down to the 'Order Summary' section.</p>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <div className="w-8 h-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-black shrink-0">4</div>
+              <div>
+                <p className="font-bold text-amber-900">File Complaint</p>
+                <p className="text-sm text-stone-500">Click 'File a complaint' and describe your issue. We respond within 24 hours.</p>
+              </div>
+            </div>
+            <div className="pt-4 border-t border-stone-50">
+              <Button onClick={() => window.open('mailto:support@kimcoffee.com')} className="w-full bg-amber-900 hover:bg-black text-white font-bold rounded-2xl h-12">
+                Contact Support Directly
+              </Button>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
